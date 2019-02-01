@@ -10,7 +10,7 @@
       die('Could not connect: ' . mysqli_error($conn));
    }
 
-   $sql = 'SELECT * FROM custandprod, products, users where users.cid=custandprod.cid and products.pid=custandprod.pid and custandprod.cid='.$_GET['cid'];
+   $sql = 'SELECT * FROM orders, products, users where users.cid=orders.cid and products.pid=orders.pid and orders.cid='.$_GET['cid'] . ' ORDER BY timestamp desc';
    $retval = mysqli_query( $conn, $sql );
 
    if(! $retval ) {
@@ -33,8 +33,7 @@
   <title>Super Secret Gov</title>
 
   <link rel="mask-icon" href="./index_files/govuk-mask-icon.svg" color="#0b0c0c">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-    crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link href="./index_files/main-9a7f5765d2a7cb456c6298750b33db14.css" rel="stylesheet" media="all">
   <link href="./styles.css" rel="stylesheet">
 
@@ -61,21 +60,23 @@
         <div class="container">
           <table>
             <tr>
+              <th>Order ID</th>
+              <th>Date</th>
               <th>Name</th>
-              <th>Customer ID</th>
               <th>Phone</th>
               <th>Product</th>
               <th>Description</th>
             </tr>
             <?php if ($_GET['search']): ?>
             <tr>
-              <td colspan="5">No products matching <?php echo $_GET['search']; ?> were found.</td>
+              <td colspan="7">No products matching <?php echo $_GET['search']; ?> were found.</td>
             </tr>
             <?php else: ?>
               <?php while($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)): ?>
                 <tr>
-                  <td><?php echo $row['cfname']; ?> <?php echo $row->clname; ?></td>
-                  <td><?php echo $row['cid']; ?></td>
+                  <td><?php echo $row['oid']; ?> <?php echo $row->clname; ?></td>
+                  <td><?php echo $row['timestamp']; ?></td>
+                  <td><?php echo $row['cfname']; ?></td>
                   <td><?php echo $row['cphone']; ?></td>
                   <td><?php echo $row['pname']; ?></td>
                   <td><?php echo $row['pdesc']; ?></td>

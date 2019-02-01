@@ -1,24 +1,26 @@
 -- --------------------------------------------------------
 
 --
--- Table structure for table `custandprod`
+-- Table structure for table `orders`
 --
-
-CREATE TABLE `custandprod` (
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
+  `oid` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `timestamp` datetime DEFAULT CURRENT_TIMESTAMP,
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `custandprod`
+-- Dumping data for table `orders`
 --
 
-INSERT INTO `custandprod` (`cid`, `pid`) VALUES
-(1, 1),
-(1, 3),
-(2, 1),
-(2, 2),
-(2, 4);
+INSERT INTO `orders` (`oid`, `timestamp`, `cid`, `pid`) VALUES
+(1, '2019-01-23 06:03:01', 1, 1),
+(2, '2018-12-11 19:37:51', 1, 3),
+(3, '2013-03-17 23:27:19', 2, 1),
+(4, '2017-07-28 20:59:22', 2, 2),
+(5, '2016-07-01 15:14:30', 2, 4);
 
 -- --------------------------------------------------------
 
@@ -26,8 +28,9 @@ INSERT INTO `custandprod` (`cid`, `pid`) VALUES
 -- Table structure for table `products`
 --
 
+DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
-  `pid` int(11) NOT NULL,
+  `pid` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `pname` varchar(255) DEFAULT NULL,
   `pdesc` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -45,21 +48,12 @@ INSERT INTO `products` (`pid`, `pname`, `pdesc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `testtable`
---
-
-CREATE TABLE `testtable` (
-  `ttid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `cid` int(11) NOT NULL,
+  `cid` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `cfname` varchar(255) DEFAULT NULL,
   `clname` varchar(255) DEFAULT NULL,
   `caddress` varchar(255) DEFAULT NULL,
@@ -77,19 +71,3 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`cid`, `cfname`, `clname`, `caddress`, `ccity`, `czip`, `cphone`, `cusername`, `cpassword`) VALUES
 (1, 'Foo', 'B', '123 Main St. ', 'Redmond', 98004, '5551234567', 'foob', 'password'),
 (2, 'Bar', 'Z', '321 Azure Way', 'Redmond', 98052, '5556667777', 'barz', 'password');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`pid`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`cid`);

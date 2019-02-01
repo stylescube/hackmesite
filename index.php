@@ -48,8 +48,7 @@
   <title>Super Secret Gov</title>
 
   <link rel="mask-icon" href="./index_files/govuk-mask-icon.svg" color="#0b0c0c">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-    crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link href="./index_files/main-9a7f5765d2a7cb456c6298750b33db14.css" rel="stylesheet" media="all">
   <link href="./styles.css" rel="stylesheet">
 
